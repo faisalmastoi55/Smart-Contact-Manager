@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+
+<head>
+	<meta charset="UTF-8" />
+	<title> </title>
+</head>
+
+<body>
+
+	<section>
+
+		<!-- Message Box -->
+		<div th:if="${session.message}" class="container mt-3">
+			<div class="alert alert-danger text-center" role="alert">
+				<span th:text="${session.message}"></span>
+			</div>
+
+			<th:block th:text="${@userServiceImpl.removeSessionMessage()}"></th:block>
+
+		</div>
+
+		<div class="d-flex justify-content-center" style="margin-top: 20vh;">
+			<div class="subscribe">
+				<p>Registered Email</p>
+				<form th:action="@{/send-otp}" method="post">
+					<input placeholder="Your e-mail" required class="subscribe-input" name="email" type="email">
+					<br>
+					<button type="submit" class="submit-btn border-0">SEND OTP</button>
+				</form>
+			</div>
+		</div>
+
+	</section>
+
+
+</body>
+
+</html>

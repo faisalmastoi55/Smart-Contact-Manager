@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+
+<head>
+	<meta charset="UTF-8" />
+	<title></title>
+</head>
+
+<body>
+	<!-- Section: Design Block -->
+	<section class="text-center ms-2 me-2">
+		<!-- Background image -->
+		<div class="p-5 bg-image" style="
+        background-image: url('https://mdbootstrap.com/img/new/textures/full/171.jpg');
+        height: 1050px;
+        "></div>
+		<!-- Background image -->
+
+		<div class="card mx-4 mx-md-5 shadow-5-strong" style="
+        margin-top: -1010px;
+        background: rgb(255, 255, 255);
+        backdrop-filter: blur(30px);
+        ">
+			<div class="card-body py-5 px-md-5">
+
+				<div class="row d-flex justify-content-center">
+					<div class="col-lg-10">
+						<h2 class="fw-bold mb-5">Add Contact</h2>
+						<form th:action="@{/user/process-contact}" method="post" th:object="${contact}"
+							enctype="multipart/form-data">
+							<!-- 2 column grid layout with text inputs for the first and last names -->
+							<div class="row">
+								<div class="col-md-6 mb-4">
+									<div class="form-outline">
+										<input type="text" required id="form3Example1" name="name"
+											class="form-control" />
+										<label class="form-label" for="form3Example1">First name</label>
+									</div>
+								</div>
+								<div class="col-md-6 mb-4">
+									<div class="form-outline">
+										<input type="text" required id="form3Example2" name="secondName"
+											class="form-control" />
+										<label class="form-label" for="form3Example2">Last name</label>
+									</div>
+								</div>
+							</div>
+
+							<!-- Email input -->
+							<div class="form-outline mb-4">
+								<input type="email" required id="form3Example3" name="email" class="form-control" />
+								<label class="form-label" for="form3Example3">Email address</label>
+							</div>
+
+							<!-- Phone Number input -->
+							<div class="form-outline mb-4">
+								<input type="text" required minlength="11" maxlength="11" id="form3Example4"
+									name="phone" class="form-control" />
+								<label class="form-label" for="form3Example4">Phone Nunber</label>
+							</div>
+
+							<!-- Work input -->
+							<div class="form-outline mb-4">
+								<input type="text" required id="form3Example4" name="work" class="form-control" />
+								<label class="form-label" for="form3Example4">Work</label>
+							</div>
+
+							<!-- Description input -->
+							<div class="form-outline mb-4">
+								<textarea name="description" id="default-editor" class="form-control"></textarea>
+							</div>
+
+							<div class="form-outline mb-4">
+								<input type="file" name="profileImage" class="form-control" />
+							</div>
+
+							<!-- Submit button -->
+							<button type="submit" class="btn btn-primary btn-block mb-4">
+								Save Contact
+							</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+		<script>
+			tinymce.init({
+				selector: 'textarea#default-editor'
+			});
+		</script>
+		
+		<script>
+		$(document).ready(() => {
+			$(".item").removeClass("active1");
+			$("#contact-link").addClass("active1");
+		});
+	</script>
+		
+	</section>
+	<!-- Section: Design Block -->
+
+
+</body>
+
+</html>

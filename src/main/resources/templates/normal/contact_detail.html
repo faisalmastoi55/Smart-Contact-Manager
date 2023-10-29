@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+
+<head>
+	<meta charset="UTF-8" />
+	<title></title>
+</head>
+
+<body>
+
+	<section class="vh-110 " style="background-color: #9A616D;">
+		<div class="container py-5 h-100">
+			<div class="row d-flex justify-content-center align-items-center h-100">
+				<div class="col col-xl-10">
+					<div th:if="${contact}" class="card" style="border-radius: 1rem;">
+						<div class="row g-0">
+							<div class="col-md-6 col-lg-5 d-none d-md-block">
+								<img th:src="@{'/img/'+${contact.image}}" alt="login form" class="img-fluid"
+									style="border-radius: 1rem 0 0 1rem;" />
+							</div>
+							<div class="col-md-6 col-lg-7 ">
+								<div class="card-body p-4 p-lg-5 text-black">
+
+									<form>
+
+										<div class="d-flex align-items-center pb-1">
+											<i class="fas fa-cubes fa-2x me-2" style="color: #ff6219;"></i>
+											<span class="h3 fw-bold mb-0 me-2" th:text="${contact.name}"></span>
+											<span class="h3 fw-bold mb-0" th:text="${contact.secondName}"></span>
+										</div>
+
+										<h5 th:text="${contact.work}" class="fw-normal  pb-3"
+											style="letter-spacing: 1px;"></h5>
+
+										<div class="table-responsive">
+											<table class="table table-hover table-sm">
+												<thead>
+													<tr>
+														<th scope="col">#ID</th>
+														<th scope="col"><span th:text="${contact.cid}"></span></th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<th scope="row">Email</th>
+														<td><span th:text="${contact.email}"></span></td>
+													</tr>
+													<tr>
+														<th scope="row">Phone</th>
+														<td><span th:text="${contact.phone}"></span></td>
+													</tr>
+												</tbody>
+											</table>
+											<div class="description text-dark">
+												<span class="h4 fw-bold mb-0 me-2">Description :-</span>
+												<th:block th:utext="${contact.description}"></th:block>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+					<h2 class="text-white" th:unless="${contact}">You don't have permission to see this contact...</h2>
+				</div>
+			</div>
+		</div>
+	</section>
+
+</body>
+
+</html>

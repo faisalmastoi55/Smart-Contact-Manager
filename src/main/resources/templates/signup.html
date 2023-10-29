@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+
+<head>
+	<meta charset="UTF-8" />
+	<title> </title>
+</head>
+
+<body>
+	<section class="bg-color">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 offset-md-3">
+					<div class="form-container">
+						<div th:if="${session.message}" th:classappend="${session.message.type}" class="alert"
+							role="alert">
+							<p th:text="${session.message.content}"></p>
+
+							<!--remove the message-->
+
+							<th:block th:text="${@userServiceImpl.removeSessionMessage()}"></th:block>
+
+						</div>
+						<div class="form">
+							<span class="heading">Registration Form</span>
+							<form novalidate th:action="@{/do_register}" method="post" th:object="${user}">
+								<input placeholder="Name*" type="text" name="name" class="input1" th:value="${user.name}"
+									th:classappend="${#fields.hasErrors('name') ? 'is-invalid' : '' }" required>
+
+								<div th:each="e : ${#fields.errors('name')}" th:text="${e}" class="invalid-feedback mt-1">
+								</div>
+
+								<input placeholder="Email*" type="email" name="email" class="input1"
+									th:value="${user.email}"
+									th:classappend="${#fields.hasErrors('email') ? 'is-invalid' : '' }" required>
+
+								<div th:each="e : ${#fields.errors('email')}" th:text="${e}" class="invalid-feedback mt-1">
+								</div>
+
+								<input placeholder="Password*" type="password" name="password" class="input1"
+									th:value="${user.password}"
+									th:classappend="${#fields.hasErrors('password') ? 'is-invalid' : '' }" required>
+
+								<div th:each="e : ${#fields.errors('password')}" th:text="${e}" class="invalid-feedback mt-1">
+								</div>
+
+								<textarea name="about" rows="10" class="textarea" th:value="${user.about}"
+									placeholder="Enter something yourself"></textarea>
+
+								<div class="mb-3 form-check">
+									<input type="checkbox" name="agreement" class="form-check-input" id="exampleCheck1">
+									<label class="form-check-label" for="exampleCheck1">Accept terms and
+										condition</label>
+								</div>
+
+								<div class="button-container">
+									<button class="send-button" type="submit">Submit</button>
+									<div class="reset-button-container">
+										<button id="reset-btn" class="reset-button">Reset</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>
